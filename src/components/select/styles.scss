@@ -1,0 +1,37 @@
+@import "scss/_variables";
+
+.select-component-wrapper{
+    @include input-wrapper;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    position: relative;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    .select-content {
+        width: 100%;
+        flex-grow: 1;
+    }
+    .options-wrapper {
+        display: relative;
+        width: 100%;
+
+        .select-options {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            margin-top: 20px;
+            background-color: white;
+            box-shadow: rgb(0 0 0 / 20%) 0px 5px 5px -3px, rgb(0 0 0 / 14%) 0px 8px 10px 1px, rgb(0 0 0 / 12%) 0px 3px 14px 2px;
+    
+            .option {
+                padding: 10px 5px;
+            }
+    
+        }
+
+    }
+
+}

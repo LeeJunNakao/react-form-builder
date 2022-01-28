@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useRef } from "react";
+import Input from "components/input/Input";
+import Select from "components/select/Select";
+import "./style.scss";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="page">
+      <div className="panel">
+        <Input placeholder="Name" />
+        <Select
+          options={[
+            { label: "nome", value: "NAME" },
+            { label: "idade", value: "AGE" },
+            { label: "carro", value: "CAR" },
+            { label: "rua", value: "STREET" },
+            { label: "carro", value: "CAR" },
+            { label: "rua", value: "STREET" },
+            { label: "carro", value: "CAR" },
+            { label: "rua", value: "STREET" },
+            { label: "carro", value: "CAR" },
+            { label: "rua", value: "STREET" },
+          ]}
+        />
+      </div>
     </div>
   );
 }
