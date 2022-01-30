@@ -1,0 +1,33 @@
+.form-builder {
+  padding: 20px;
+  width: 400px;
+
+  &__title-wrapper {
+    padding: 20px 0;
+
+    .form-builder__title {
+      display: flex;
+      justify-content: center;
+      font-size: 30px;
+    }
+  }
+
+  &__items {
+    column-gap: 10px;
+
+    .form_builder__item {
+      & + .form_builder__item {
+        margin-top: 20px;
+
+        &[class*=" col-"] {
+          margin-top: 0;
+        }
+      }
+
+      &-label {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+}

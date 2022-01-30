@@ -1,0 +1,11 @@
+@import "scss/_variables";
+
+@mixin input-wrapper {
+  border: $border;
+  padding: 10px;
+  border-radius: $border-radius;
+  background-color: white;
+  width: 100%;
+  box-sizing: border-box;
+  height: 40px;
+}

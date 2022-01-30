@@ -11,3 +11,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.col-2 {
+  grid-column: auto/span 2;
+}
+
+.col-3 {
+  grid-column: auto/span 3;
+}
+
+.col-4 {
+  grid-column: auto/span 4;
+}
+
+.col-6 {
+  grid-column: auto/span 6;
+}
+
+.col-8 {
+  grid-column: auto/span 8;
+}
+
+.col-12 {
+  grid-column: auto/span 12;
+}

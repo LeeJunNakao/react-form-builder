@@ -1,37 +1,59 @@
 @import "scss/_variables";
+@import "scss/_mixins";
 
-.select-component-wrapper{
+.select-component-wrapper {
+  background-color: red;
+  .select-input {
     @include input-wrapper;
     display: grid;
     grid-template-columns: 1fr auto;
     position: relative;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 
     &:hover {
-        cursor: pointer;
+      cursor: pointer;
     }
 
     .select-content {
-        width: 100%;
-        flex-grow: 1;
+      width: 100%;
+      flex-grow: 1;
+      padding-left: 10px;
     }
-    .options-wrapper {
-        display: relative;
-        width: 100%;
 
-        .select-options {
-            position: absolute;
-            width: 100%;
-            left: 0;
-            margin-top: 20px;
-            background-color: white;
-            box-shadow: rgb(0 0 0 / 20%) 0px 5px 5px -3px, rgb(0 0 0 / 14%) 0px 8px 10px 1px, rgb(0 0 0 / 12%) 0px 3px 14px 2px;
-    
-            .option {
-                padding: 10px 5px;
-            }
-    
+    .arrow-icon {
+      font-size: 25px;
+    }
+  }
+
+  .options-wrapper {
+    display: relative;
+    width: 100%;
+
+    .select-options {
+      position: absolute;
+      background-color: white;
+      box-shadow: rgb(0 0 0 / 20%) 0px 5px 5px -3px,
+        rgb(0 0 0 / 14%) 0px 8px 10px 1px, rgb(0 0 0 / 12%) 0px 3px 14px 2px;
+
+      .option {
+        padding: 10px;
+
+        &:hover {
+          background-color: #eaeaea;
+          cursor: pointer;
         }
 
-    }
+        &.empty-message {
+          display: flex;
+          justify-content: center;
 
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
 }

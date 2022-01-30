@@ -1,5 +1,6 @@
 import React, { useState, createRef } from "react";
 import { useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { MdArrowDropUp, MdArrowDropDown } from "react-icons/md";
 import { SelectOption, SelectProps } from "../protocols";
 import "./styles.scss";
@@ -11,9 +12,20 @@ function Select(props: SelectProps) {
 
   useEffect(() => {
     if (content) setContentDisplay(content.label);
-    setIsOpened(false);
   }, [content]);
+
+  const optionsWrapperRef = createRef();
   const optionsRef = createRef();
+
+  useEffect(() => {
+    const wrapperWidth = (optionsWrapperRef.current as HTMLDivElement)
+      .offsetWidth;
+
+    const options = optionsRef.current as HTMLDivElement;
+    if (options) {
+      options.style.width = `${wrapperWidth}px`;
+    }
+  }, [optionsWrapperRef, optionsRef]);
 
   const handleClick = (event: React.MouseEvent) => {
     if (optionsRef) {
@@ -34,15 +46,27 @@ function Select(props: SelectProps) {
 
   const handleChange = (option: SelectOption) => {
     setContent(option);
+    setIsOpened(false);
   };
 
-  const Options = props.options.map((option) => {
+  const options = props.options || [];
+  const Options = options.map((option) => {
     return (
-      <div className="option" onClick={() => handleChange(option)}>
-        {option.label}
+      <div
+        className="option"
+        key={uuidv4()}
+        onClick={() => handleChange(option)}
+      >
+        <span>{option.label}</span>
       </div>
     );
   });
+
+  const EmptyMessage = (
+    <div className="option empty-message">
+      <span>No options </span>
+    </div>
+  );
 
   return (
     <div
@@ -51,16 +75,26 @@ function Select(props: SelectProps) {
       onBlur={handleBlur}
       tabIndex={0}
     >
-      <div className="select-content">{contentDisplay}</div>
-      {isOpened ? <MdArrowDropUp /> : <MdArrowDropDown />}
-      <div className="options-wrapper">
+      <div className="select-input">
+        <div className="select-content">{contentDisplay}</div>
+        {isOpened ? (
+          <MdArrowDropUp className="arrow-icon" />
+        ) : (
+          <MdArrowDropDown className="arrow-icon" />
+        )}
+      </div>
+
+      <div
+        className="options-wrapper"
+        ref={optionsWrapperRef as React.RefObject<HTMLDivElement>}
+      >
         {isOpened && (
           <div
             className="select-options"
             ref={optionsRef as React.RefObject<HTMLDivElement>}
             tabIndex={0}
           >
-            {Options}
+            {options.length ? Options : EmptyMessage}
           </div>
         )}
       </div>
