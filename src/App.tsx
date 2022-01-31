@@ -1,9 +1,7 @@
-import { useRef } from "react";
-import Input from "components/input/Input";
-import Select from "components/select/Select";
 import { FormBuilderProps } from "form-builder";
 import FormBuilder from "components/form-builder/FormBuilder";
 import "./style.scss";
+import { ValidationType } from "form-builder/FormBuilder";
 
 const formConfig: FormBuilderProps = {
   title: "Person",
@@ -16,6 +14,10 @@ const formConfig: FormBuilderProps = {
         style: {
           cols: 12,
         },
+        validation: {
+          required: true,
+          type: ValidationType.EMAIL,
+        },
       },
     },
     {
@@ -27,7 +29,13 @@ const formConfig: FormBuilderProps = {
           cols: 12,
         },
         props: {
-          options: [{ label: "Carro", value: "car" }],
+          options: [
+            { label: "Capricornio", value: "capri" },
+            { label: "Leao", value: "lion" },
+          ],
+        },
+        validation: {
+          required: true,
         },
       },
     },

@@ -1,4 +1,4 @@
-export type HookSetState = (value: string) => void;
+export type HookSetState = (value: any) => void;
 
 export type InputProps = {
   placeholder?: string;

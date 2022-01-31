@@ -12,6 +12,7 @@ function Select(props: SelectProps) {
 
   useEffect(() => {
     if (content) setContentDisplay(content.label);
+    if (props.onChange) props.onChange(content?.value);
   }, [content]);
 
   const optionsWrapperRef = createRef();
@@ -46,6 +47,7 @@ function Select(props: SelectProps) {
 
   const handleChange = (option: SelectOption) => {
     setContent(option);
+
     setIsOpened(false);
   };
 

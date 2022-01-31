@@ -1,8 +1,8 @@
-import FormBuilder, { FormConfig } from "./FormBuilder";
+import FormBuilder, { FormConfig, ValidationType } from "./FormBuilder";
 import { InputProps } from "components/protocols";
 import { SelectProps } from "components/protocols";
 
-export type { InputProps, SelectProps };
+export type { InputProps, SelectProps, ValidationType };
 export type Config = Pick<FormConfig, "inputsOptions">;
 export type FormBuilderProps = Omit<FormConfig, "inputsOptions">;
 
