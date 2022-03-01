@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { inputsOptionsDefault } from "./config";
-import { inferType, InputsOptions } from "./fn";
+import { useState, createRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { SelectOption } from "components/protocols";
+import { arrayToObject } from "utils/functions";
+import { inputsOptionsDefault } from "./config";
+import { inferType, InputsOptions } from "./fn";
 import InputWrapper from "./InputWrapper";
 import "./styles.scss";
 
@@ -30,7 +31,7 @@ export type FormItemConfig = {
   };
 };
 
-type Payload = {
+export type Payload = {
   [fieldName: string]: any;
 };
 
@@ -38,24 +39,24 @@ export type FormConfig = {
   title?: string;
   config: FormItemConfig[];
   inputsOptions?: InputsOptions;
+  onValid?: (payload: Payload) => void;
+  onInvalid?: (payload: Payload) => void;
 };
 
 function FormBuilder(props: FormConfig) {
-  const [showErrors, setShowErrors] = useState(false);
+  const [showErrors, setShowErrors] = useState(true);
   const inputsOptions = props.inputsOptions || inputsOptionsDefault;
-  const payload = {} as Payload;
+  const [payload, setPayload] = useState<Payload>({});
 
-  const handlePayload = (name: string) => (value: any) => {
-    payload[name] = value;
-  };
-
-  const Inputs = props.config.map((item) => {
+  const InputsData = props.config.map((item) => {
     const Component = inferType(item.config.inputType, inputsOptions);
     const colStyle = item.config.style?.cols
       ? `col-${item.config.style?.cols}`
       : "col-12";
 
-    return (
+    const ref = createRef<any>();
+
+    const component = (
       <div className={`form_builder__item ${colStyle}`} key={uuidv4()}>
         <div className="form_builder__item-label">
           <span>{item.label}</span>
@@ -63,19 +64,35 @@ function FormBuilder(props: FormConfig) {
 
         <InputWrapper
           component={Component}
-          onChange={handlePayload(item.name)}
           itemData={item}
           showErrors={showErrors}
-          setShowErrors={setShowErrors}
+          formData={payload}
+          ref={ref}
           {...item.config.props}
-        ></InputWrapper>
+        />
       </div>
     );
+
+    return { component, ref, name: item.name };
   });
 
+  const Inputs = InputsData.map((i) => i.component);
+
   const onClickSubmit = () => {
-    console.log("onClickSubmit!", payload);
-    setShowErrors(true);
+    const data = InputsData.map((i) => ({
+      [i.name]: i.ref.current?.getValue(),
+    }));
+    const errors = InputsData.map((i) => i.ref.current?.getErrorMessage());
+    const isFormValid = Object.values(errors).every((i) => !i);
+
+    if (isFormValid) {
+      if (props.onValid) {
+        props.onValid(arrayToObject(data));
+        setPayload(arrayToObject(data));
+      }
+    } else {
+      if (props.onInvalid) props.onInvalid(arrayToObject(data));
+    }
   };
 
   return (

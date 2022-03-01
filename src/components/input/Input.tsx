@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
-import { handleChange } from "utils/components-aux";
 import { InputProps } from "../protocols";
 import "./styles.scss";
 
-function Input(props: InputProps) {
+const Input = (props: InputProps) => {
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    if (props.value) setValue(props.value);
+  }, []);
 
   const handleContent = (event: any) => {
     const content = event.target.value;
     setValue(content);
+    if (props.onChange) props.onChange(content);
   };
-
-  useEffect(() => {
-    if (props.onChange) props.onChange(value);
-  }, [value]);
 
   return (
     <div className="input-component-wrapper">
@@ -26,6 +26,6 @@ function Input(props: InputProps) {
       />
     </div>
   );
-}
+};
 
 export default Input;

@@ -15,6 +15,11 @@ function Select(props: SelectProps) {
     if (props.onChange) props.onChange(content?.value);
   }, [content]);
 
+  useEffect(() => {
+    const selectedOption = props.options.find((i) => i.value === props.value);
+    setContent(selectedOption);
+  }, [props.value]);
+
   const optionsWrapperRef = createRef();
   const optionsRef = createRef();
 

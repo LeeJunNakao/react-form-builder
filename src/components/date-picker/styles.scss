@@ -1,0 +1,105 @@
+@import "scss/_mixins";
+
+.date-component-wrapper {
+  @include input-wrapper;
+  position: relative;
+
+  .input-component {
+    border: none;
+    height: 100%;
+    outline: none;
+    font-size: 15px;
+    width: 100%;
+  }
+
+  .calendar-wrapper {
+    left: 0;
+    top: 40px;
+    width: 400px;
+    height: 400px;
+    border: 1px solid black;
+    border-radius: 4px;
+    position: absolute;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+
+    .calendar-arrow {
+      border: none;
+      background-color: transparent;
+      font-weight: bold;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .calendar-header {
+      border-bottom: 1px solid black;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+
+      .edit-year-input {
+        width: 50px;
+      }
+    }
+
+    .calendar-month {
+      padding: 20px 10px;
+      display: flex;
+      justify-content: space-between;
+      .month-name {
+        font-size: 25px;
+        text-transform: uppercase;
+      }
+    }
+
+    .calendar-days {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
+      .weekdays,
+      .calendar-week {
+        display: grid;
+        grid-template-columns: repeat(7, 14%);
+        padding-left: 1%;
+        padding-right: 1%;
+        justify-items: center;
+
+        & > div:hover {
+          cursor: pointer;
+        }
+
+        .selected {
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          span {
+            height: 25px;
+            width: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            border-radius: 50%;
+          }
+        }
+      }
+
+      .calendar-week {
+        height: calc(100% / 6);
+
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
