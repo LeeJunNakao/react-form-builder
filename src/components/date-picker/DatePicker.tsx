@@ -12,22 +12,25 @@ const DatePicker = (props: InputProps) => {
 
   const handleContent = (event: any) => setValue(event.currentTarget.value);
 
-  const parseString = (v: string) => {
-    const [y, m, d] = v.split(/\//).map((i) => Number(i));
+  const parseString = (v: string): string => {
+    const [y, m, d] = v.split(/[\/\-]/).map((i) => Number(i));
 
     if (m >= 1 && m <= 12 && d >= 1 && d <= 31) {
       setYear(y);
       setMonth(m - 1);
       setDay(d);
+      return v.split(/[\/\-]/).join("/");
     } else {
       setValue("");
+      return "";
     }
   };
 
   useEffect(() => {
     if (props.value) {
       setValue(props.value);
-      parseString(props.value);
+      const value = parseString(props.value);
+      setValue(value);
     }
   }, []);
 

@@ -1,4 +1,4 @@
-import { useState, createRef } from "react";
+import { useState, createRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { SelectOption } from "components/protocols";
 import { arrayToObject } from "utils/functions";
@@ -39,6 +39,7 @@ export type FormConfig = {
   title?: string;
   config: FormItemConfig[];
   inputsOptions?: InputsOptions;
+  formContent?: Payload;
   onValid?: (payload: Payload) => void;
   onInvalid?: (payload: Payload) => void;
 };
@@ -47,6 +48,10 @@ function FormBuilder(props: FormConfig) {
   const [showErrors, setShowErrors] = useState(true);
   const inputsOptions = props.inputsOptions || inputsOptionsDefault;
   const [payload, setPayload] = useState<Payload>({});
+
+  useEffect(() => {
+    if (props.formContent) setPayload(props.formContent);
+  }, []);
 
   const InputsData = props.config.map((item) => {
     const Component = inferType(item.config.inputType, inputsOptions);

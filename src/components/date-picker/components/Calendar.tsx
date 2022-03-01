@@ -22,8 +22,9 @@ const DateComponent = (props: Props) => {
     const monthString = `0${month + 1}`.split("").slice(-2).join("");
     const dayString = `0${day}`.split("").slice(-2).join("");
     const dateString = `${year}/${monthString}/${dayString}`;
+
     props.setInput(dateString);
-  }, [year, month, day]);
+  }, [props]);
 
   const changeMonth = (count: number) => () => {
     if (count < 0) {

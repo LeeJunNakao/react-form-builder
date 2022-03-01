@@ -3,7 +3,6 @@ import React, {
   forwardRef,
   useImperativeHandle,
   useEffect,
-  createRef,
 } from "react";
 import { validator } from "utils/validator";
 import { FormItemConfig, Payload } from "./FormBuilder";
@@ -20,7 +19,6 @@ const InputWrapper = forwardRef((props: Props, ref) => {
   const [error, setError] = useState("");
 
   const Component = props.component;
-  const inputRef = createRef();
 
   useImperativeHandle(ref, () => ({
     getValue: () => value,

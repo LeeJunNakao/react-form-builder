@@ -2,21 +2,18 @@ import { FormBuilderProps } from "form-builder";
 import FormBuilder from "components/form-builder/FormBuilder";
 import "./style.scss";
 import { Payload, ValidationType } from "form-builder/FormBuilder";
-import React, {
-  useEffect,
-  useState,
-  forwardRef,
-  useRef,
-  useImperativeHandle,
-  createRef,
-} from "react";
 
 const formConfig: FormBuilderProps = {
   title: "Person",
+  formContent: {
+    email: "james@gmail.com",
+    zodiac_sign: "lion",
+    date: "2020-09-13",
+  },
   config: [
     {
-      name: "name",
-      label: "Name",
+      name: "email",
+      label: "Email",
       config: {
         inputType: "input",
         style: {
