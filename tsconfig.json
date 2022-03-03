@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
     "target": "es5",
     "lib": [
       "dom",
@@ -13,16 +15,17 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "src",
-    "downlevelIteration": true
+    "baseUrl": "./",
+    "downlevelIteration": true,
+    "paths": {
+      "@src/*": [
+        "./src/*"
+      ]
+    }
   },
-  "include": [
-    "src"
-  ]
 }

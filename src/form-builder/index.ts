@@ -1,6 +1,6 @@
 import FormBuilder, { FormConfig, ValidationType } from "./FormBuilder";
-import { InputProps } from "components/protocols";
-import { SelectProps } from "components/protocols";
+import { InputProps } from "@src/components/protocols";
+import { SelectProps } from "@src/components/protocols";
 
 export type { InputProps, SelectProps, ValidationType };
 export type Config = Pick<FormConfig, "inputsOptions">;

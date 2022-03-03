@@ -1,4 +1,4 @@
-import { daysInMonth, getWeekday, range } from "utils/functions";
+import { daysInMonth, getWeekday, range } from "@src/utils/functions";
 
 type Props = {
   year: number;

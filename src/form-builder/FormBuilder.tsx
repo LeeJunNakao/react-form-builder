@@ -1,7 +1,7 @@
 import { useState, createRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { SelectOption } from "components/protocols";
-import { arrayToObject } from "utils/functions";
+import { SelectOption } from "@src/components/protocols";
+import { arrayToObject } from "@src/utils/functions";
 import { inputsOptionsDefault } from "./config";
 import { inferType, InputsOptions } from "./fn";
 import InputWrapper from "./InputWrapper";

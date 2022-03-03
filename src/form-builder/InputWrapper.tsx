@@ -4,7 +4,7 @@ import React, {
   useImperativeHandle,
   useEffect,
 } from "react";
-import { validator } from "utils/validator";
+import { validator } from "@src/utils/validator";
 import { FormItemConfig, Payload } from "./FormBuilder";
 
 type Props = {

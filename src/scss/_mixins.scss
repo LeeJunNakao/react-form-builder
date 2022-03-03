@@ -1,4 +1,5 @@
-@import "scss/_variables";
+$border-radius: 3px;
+$border: 1px solid black;
 
 @mixin input-wrapper {
   border: $border;

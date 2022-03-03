@@ -1,4 +1,8 @@
-@import "scss/_variables";
+@import "@src/scss/_variables";
+
+span {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
 .form-builder {
   padding: 20px;

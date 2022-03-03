@@ -1,7 +1,7 @@
-import FormBuilder, { Config } from "form-builder";
-import Input from "components/input/Input";
-import Select from "components/select/Select";
-import DatePicker from "components/date-picker/DatePicker";
+import FormBuilder, { Config } from "@src/form-builder";
+import Input from "@src/components/input/Input";
+import Select from "@src/components/select/Select";
+import DatePicker from "@src/components/date-picker/DatePicker";
 
 const config: Config = {
   inputsOptions: {

@@ -1,5 +1,5 @@
 import { useEffect, useState, FocusEvent } from "react";
-import { daysInMonth, getWeekday, range } from "utils/functions";
+import { daysInMonth, getWeekday, range } from "@src/utils/functions";
 import Year from "./Year";
 import Month from "./Month";
 import Day from "./Day";

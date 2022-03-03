@@ -1,4 +1,4 @@
-@import "scss/_mixins";
+@import "@src/scss/_mixins";
 
 .input-component-wrapper {
   @include input-wrapper;
