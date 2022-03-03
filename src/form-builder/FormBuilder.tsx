@@ -12,6 +12,8 @@ export enum ValidationType {
   PASSWORD = "password",
 }
 
+export type JSXElement = JSX.Element;
+
 export type FormItemConfig = {
   name: string;
   label?: string;
@@ -44,7 +46,7 @@ export type FormConfig = {
   onInvalid?: (payload: Payload) => void;
 };
 
-function FormBuilder(props: FormConfig) {
+function FormBuilder(props: FormConfig): JSX.Element {
   const [showErrors, setShowErrors] = useState(true);
   const inputsOptions = props.inputsOptions || inputsOptionsDefault;
   const [payload, setPayload] = useState<Payload>({});
