@@ -1,3 +1,5 @@
+import configForm, { Config } from "./form-builder";
+
 export {
   HookSetState,
   InputProps,
@@ -5,10 +7,10 @@ export {
   SelectProps,
 } from "./components/protocols";
 
-export { Config } from "./form-builder";
-
 export { InputsOptions } from "./form-builder/fn";
 
-import { FormConfig, JSXElement } from "./form-builder/FormBuilder";
+type ConfigForm = typeof configForm;
 
-export type FormBuilder = (props: FormConfig) => JSXElement;
+export { Config, ConfigForm };
+
+export default ConfigForm;
