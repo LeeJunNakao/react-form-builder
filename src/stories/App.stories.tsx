@@ -15,6 +15,12 @@ stories.add("App", () => {
     console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", p);
   };
 
+  // const submitButton = (onClick: () => void) => (
+  //   <div>
+  //     <button onClick={onClick}>Custom submiting</button>
+  //   </div>
+  // );
+
   return (
     <div className="page">
       <div className="panel">
@@ -22,6 +28,7 @@ stories.add("App", () => {
           {...formConfig}
           onValid={onIsvalid}
           onInvalid={onInvalid}
+          // submitButton={submitButton}
         />
       </div>
     </div>
@@ -42,7 +49,7 @@ const formConfig = {
       config: {
         inputType: "input",
         style: {
-          cols: 12,
+          cols: 8,
         },
         validation: {
           required: true,
@@ -56,7 +63,7 @@ const formConfig = {
       config: {
         inputType: "select",
         style: {
-          cols: 7,
+          cols: 6,
         },
         props: {
           options: [
@@ -75,7 +82,7 @@ const formConfig = {
       config: {
         inputType: "datePicker",
         style: {
-          cols: 5,
+          cols: 3,
         },
         validation: {
           required: true,

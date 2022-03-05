@@ -44,6 +44,7 @@ export type FormConfig = {
   formContent?: Payload;
   onValid?: (payload: Payload) => void;
   onInvalid?: (payload: Payload) => void;
+  submitButton?: (onSubmit: () => void) => JSX.Element;
 };
 
 function FormBuilder(props: FormConfig): JSX.Element {
@@ -104,6 +105,22 @@ function FormBuilder(props: FormConfig): JSX.Element {
     }
   };
 
+  const clearForm = () => {
+    const clearedPayload = Object.keys(payload).map((k) => [k, ""]);
+    setPayload(Object.fromEntries(clearedPayload));
+  };
+
+  const Buttons = (
+    <div className="form-builder__buttons">
+      <button className="form-builder__button" onClick={onClickSubmit}>
+        SUBMIT
+      </button>
+      <button className="form-builder__button" onClick={clearForm}>
+        CLEAR
+      </button>
+    </div>
+  );
+
   return (
     <div className="form-builder">
       <div className="form-builder__title-wrapper">
@@ -111,11 +128,7 @@ function FormBuilder(props: FormConfig): JSX.Element {
       </div>
 
       <div className="form-builder__items">{Inputs}</div>
-      <div className="form-builder__buttons">
-        <button className="form-builder__button" onClick={onClickSubmit}>
-          SUBMIT
-        </button>
-      </div>
+      {(props.submitButton && props.submitButton(onClickSubmit)) || Buttons}
     </div>
   );
 }
