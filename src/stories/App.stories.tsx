@@ -1,9 +1,9 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-// import { FormBuilder } from "../index";
 import { Payload, ValidationType } from "../form-builder/FormBuilder";
 import FormBuilder from "./components/form-builder";
+import "./styles.scss";
 
 const stories = storiesOf("App Test", module);
 
@@ -56,7 +56,7 @@ const formConfig = {
       config: {
         inputType: "select",
         style: {
-          cols: 12,
+          cols: 7,
         },
         props: {
           options: [
@@ -75,7 +75,7 @@ const formConfig = {
       config: {
         inputType: "datePicker",
         style: {
-          cols: 12,
+          cols: 5,
         },
         validation: {
           required: true,

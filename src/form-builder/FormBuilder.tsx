@@ -110,7 +110,7 @@ function FormBuilder(props: FormConfig): JSX.Element {
         <span className="form-builder__title">{props.title}</span>
       </div>
 
-      <div className="form-builder__items grid">{Inputs}</div>
+      <div className="form-builder__items">{Inputs}</div>
       <div className="form-builder__buttons">
         <button className="form-builder__button" onClick={onClickSubmit}>
           SUBMIT
