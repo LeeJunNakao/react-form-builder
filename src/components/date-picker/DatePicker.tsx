@@ -1,3 +1,4 @@
+import React from "react";
 import { FocusEvent, useState, KeyboardEvent, useEffect } from "react";
 import DateComponent from "./components/Calendar";
 import { InputProps } from "../protocols";

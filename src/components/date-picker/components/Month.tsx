@@ -1,9 +1,12 @@
+import React from "react";
+
 type Props = {
   year: number;
   month: number;
   goPrevious: () => void;
   goNext: () => void;
 };
+
 const Month = (props: Props) => {
   const monthName = new Date(props.year, props.month).toLocaleDateString(
     "default",

@@ -1,3 +1,4 @@
+import React from "react";
 import { daysInMonth, getWeekday, range } from "@src/utils/functions";
 
 type Props = {

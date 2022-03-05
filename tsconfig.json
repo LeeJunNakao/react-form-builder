@@ -1,13 +1,11 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "esnext",
+    "target": "es2018",
     "declaration": true,
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "declarationDir": "types",
+    "sourceMap": true,
+    "lib": ["es2017", "dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -18,14 +16,15 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "emitDeclarationOnly": true,
     "jsx": "react-jsx",
+    "rootDir": "./",
     "baseUrl": "./",
     "downlevelIteration": true,
     "paths": {
-      "@src/*": [
-        "./src/*"
-      ]
-    }
-  },
+      "@src/*": ["./src/*"]
+    },
+    "outDir": "./dist"
+  },    
+  "exclude": ["dist", "node_modules", "src/**/*.test.tsx"]
 }

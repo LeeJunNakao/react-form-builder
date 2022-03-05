@@ -1,4 +1,4 @@
-import { useState, createRef, useEffect } from "react";
+import React, { useState, createRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { SelectOption } from "@src/components/protocols";
 import { arrayToObject } from "@src/utils/functions";
@@ -48,7 +48,9 @@ export type FormConfig = {
 
 function FormBuilder(props: FormConfig): JSX.Element {
   const [showErrors, setShowErrors] = useState(true);
-  const inputsOptions = props.inputsOptions || inputsOptionsDefault;
+  const inputsOptions = props.inputsOptions
+    ? { ...inputsOptionsDefault, ...props.inputsOptions }
+    : inputsOptionsDefault;
   const [payload, setPayload] = useState<Payload>({});
 
   useEffect(() => {
