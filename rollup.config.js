@@ -46,6 +46,7 @@ export default [
             }),
             typescript(tsconfig),
             commonjs(),
+            terser()
         ],
         external: Object.keys(packageJson.dependencies)
             .concat(Object.keys(packageJson.peerDependencies))

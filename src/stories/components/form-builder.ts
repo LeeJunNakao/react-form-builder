@@ -1,5 +1,5 @@
-// import { FormBuilder } from "../../../dist/index";
-import FormBuilder from "../../form-builder";
+import { FormBuilder } from "../../../dist/index";
+// import FormBuilder from "../../form-builder";
 import Input from "@src/components/input/Input";
 import Select from "@src/components/select/Select";
 import DatePicker from "@src/components/date-picker/DatePicker";

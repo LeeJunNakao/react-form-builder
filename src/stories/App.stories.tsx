@@ -49,7 +49,7 @@ const formConfig = {
       config: {
         inputType: "input",
         style: {
-          cols: 8,
+          cols: 12,
         },
         validation: {
           required: true,

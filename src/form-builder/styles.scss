@@ -8,9 +8,9 @@ span {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  width: auto;
   flex-wrap: wrap;
   box-sizing: border-box;
+  width: 100%;
 
   &__title-wrapper {
     padding: 20px 0;
