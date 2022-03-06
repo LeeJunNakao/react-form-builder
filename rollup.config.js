@@ -8,8 +8,10 @@ import postcss from 'rollup-plugin-postcss';
 import typescript from '@rollup/plugin-typescript';
 import tsconfig from './tsconfig.json';
 import commonjs from '@rollup/plugin-commonjs';
-const packageJson = require("./package.json");
+import dts from 'rollup-plugin-dts'
 
+
+const packageJson = require("./package.json");
 
 const dateFnsDirs = fs
     .readdirSync(path.join(".", "node_modules", "date-fns"))
@@ -51,4 +53,13 @@ export default [
             .concat(Object.keys(packageJson.peerDependencies))
             .concat(dateFnsDirs),
     },
+    {
+        input: "./src/index.d.ts",
+        output: {
+            file: "./dist/index.d.ts",
+            format: "es"
+        },
+        plugins: [dts()]
+
+    }
 ];

@@ -3,6 +3,7 @@
     "module": "esnext",
     "target": "es2018",
     "declaration": true,
+    "declarationDir": "dist/dts",
     "sourceMap": true,
     "lib": ["es2017", "dom", "dom.iterable", "esnext"],
     "allowJs": true,
