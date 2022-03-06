@@ -62,3 +62,7 @@ export type SelectProps = {
   value?: any;
   onChange?: HookSetState;
 };
+
+export type FormBuilder = (
+  inputsOptions: Config
+) => (formConfig: FormBuilderProps) => JSX.Element;
