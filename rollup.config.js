@@ -21,14 +21,13 @@ export default [
         input: './src/index.ts',
         output: [
             {
-                file: packageJson.main,
-                format: "cjs",
-                name: "DatePicker",
+                file: './dist/index.esm.js',
+                format: 'esm',
             },
             {
-                file: packageJson.module,
-                format: "es",
-            },
+                file: './dist/index.js',
+                format: 'cjs',
+            }
         ],
         plugins: [
             postcss({
@@ -46,7 +45,7 @@ export default [
             }),
             typescript(tsconfig),
             commonjs(),
-            terser()
+            // terser()
         ],
         external: Object.keys(packageJson.dependencies)
             .concat(Object.keys(packageJson.peerDependencies))
