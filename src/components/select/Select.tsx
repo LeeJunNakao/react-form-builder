@@ -2,7 +2,7 @@ import React, { useState, createRef } from "react";
 import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { MdArrowDropUp, MdArrowDropDown } from "react-icons/md";
-import { SelectOption, SelectProps } from "../protocols";
+import { SelectOption, SelectProps } from "@src/index.d";
 import "./styles.scss";
 
 function Select(props: SelectProps) {

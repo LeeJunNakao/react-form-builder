@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-import { Payload, ValidationType } from "../form-builder/FormBuilder";
+import { Payload, ValidationType } from "@src/index.d";
 import FormBuilder from "./components/form-builder";
 import "./styles.scss";
 

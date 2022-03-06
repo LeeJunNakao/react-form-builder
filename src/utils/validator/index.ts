@@ -1,5 +1,5 @@
 import { pipe } from "@src/utils/functions";
-import { FormItemConfig } from "@src/form-builder/FormBuilder";
+import { FormItemConfig } from "@src/index.d";
 import { required, email, password, callback } from "./fns";
 
 export type Item = {

@@ -1,5 +1,5 @@
 import { Item, ValidationPipeArg } from "./index";
-import { ValidationType } from "@src/form-builder/FormBuilder";
+import { ValidationType } from "@src/utils/validator/validation";
 import errorMessages from "./messages";
 
 const getDefaultResult = () => ({ error: false, message: "" });

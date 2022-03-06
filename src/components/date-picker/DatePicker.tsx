@@ -1,7 +1,7 @@
 import React from "react";
 import { FocusEvent, useState, KeyboardEvent, useEffect } from "react";
 import DateComponent from "./components/Calendar";
-import { InputProps } from "../protocols";
+import { InputProps } from "@src/index.d";
 import "./styles.scss";
 
 const DatePicker = (props: InputProps) => {

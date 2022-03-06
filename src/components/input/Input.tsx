@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { InputProps } from "../protocols";
+import { InputProps } from "@src/index.d";
 import "./styles.scss";
 
 const Input = (props: InputProps) => {

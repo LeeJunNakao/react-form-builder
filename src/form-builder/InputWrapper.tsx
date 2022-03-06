@@ -5,7 +5,7 @@ import React, {
   useEffect,
 } from "react";
 import { validator } from "@src/utils/validator";
-import { FormItemConfig, Payload } from "./FormBuilder";
+import { FormItemConfig, Payload } from "@src/index.d";
 
 type Props = {
   component: React.FC<any>;

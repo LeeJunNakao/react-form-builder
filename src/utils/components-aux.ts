@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { HookSetState } from "@src/components/protocols";
+import { HookSetState } from "@src/index.d";
 
 export const handleChange =
   (

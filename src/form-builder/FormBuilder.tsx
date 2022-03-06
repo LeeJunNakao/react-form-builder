@@ -1,51 +1,13 @@
 import React, { useState, createRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { SelectOption } from "@src/components/protocols";
+import { SelectOption } from "@src/index.d";
 import { arrayToObject } from "@src/utils/functions";
 import { inputsOptionsDefault } from "./config";
-import { inferType, InputsOptions } from "./fn";
+import { inferType } from "./fn";
 import InputWrapper from "./InputWrapper";
 import "./styles.scss";
 
-export enum ValidationType {
-  EMAIL = "email",
-  PASSWORD = "password",
-}
-
-export type JSXElement = JSX.Element;
-
-export type FormItemConfig = {
-  name: string;
-  label?: string;
-  config: {
-    inputType: string;
-    style?: {
-      cols?: number;
-    };
-    props?: {
-      options?: SelectOption[];
-    };
-    validation?: {
-      required?: boolean;
-      type?: ValidationType;
-      callback?: (arg?: any) => any;
-    };
-  };
-};
-
-export type Payload = {
-  [fieldName: string]: any;
-};
-
-export type FormConfig = {
-  title?: string;
-  config: FormItemConfig[];
-  inputsOptions?: InputsOptions;
-  formContent?: Payload;
-  onValid?: (payload: Payload) => void;
-  onInvalid?: (payload: Payload) => void;
-  submitButton?: (onSubmit: () => void) => JSX.Element;
-};
+import { FormConfig, Payload, InputsOptions } from "@src/index.d";
 
 function FormBuilder(props: FormConfig): JSX.Element {
   const [showErrors, setShowErrors] = useState(true);

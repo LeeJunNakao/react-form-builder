@@ -3,7 +3,7 @@ import { FormBuilder } from "../../../dist/index";
 import Input from "@src/components/input/Input";
 import Select from "@src/components/select/Select";
 import DatePicker from "@src/components/date-picker/DatePicker";
-import { Config } from "@src/form-builder";
+import { Config } from "src/index.d";
 
 const config: Config = {
   inputsOptions: {
