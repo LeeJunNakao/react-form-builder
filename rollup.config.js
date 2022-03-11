@@ -14,7 +14,7 @@ import pkg from './package.json';
 
 
 
-export default {
+export default [{
     input: './src/index.ts',
     output: [
         {
@@ -40,4 +40,11 @@ export default {
             plugins: [require('autoprefixer')],
         }),
     ]
-}
+},
+{
+    input: "./src/index.d.ts",
+    output: [
+        { file: pkg.types }
+    ],
+    plugins: [dts()]
+}]
