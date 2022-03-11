@@ -1,65 +1,43 @@
 import fs from "fs";
 import path from "path";
 import babel from 'rollup-plugin-babel';
-import resolve from '@rollup/plugin-node-resolve';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
-import typescript from '@rollup/plugin-typescript';
+import typescript from 'rollup-plugin-typescript2';
 import tsconfig from './tsconfig.json';
 import commonjs from '@rollup/plugin-commonjs';
 import dts from 'rollup-plugin-dts'
+import pkg from './package.json';
 
 
-const packageJson = require("./package.json");
-
-const dateFnsDirs = fs
-    .readdirSync(path.join(".", "node_modules", "date-fns"))
-    .map((d) => `date-fns/${d}`);
 
 
-export default [
-    {
-        input: './src/index.ts',
-        output: [
-            {
-                file: './dist/index.esm.js',
-                format: 'esm',
-            },
-            {
-                file: './dist/index.js',
-                format: 'cjs',
-            }
-        ],
-        plugins: [
-            postcss({
-                plugins: [],
-                minimize: true,
-            }),
-            babel({
-                exclude: 'node_modules/**',
-                presets: ['@babel/preset-react']
-            }),
-            peerDepsExternal(),
-            resolve({
-                mainFields: ["module"],
-                extensions: [".js", ".jsx"],
-            }),
-            typescript(tsconfig),
-            commonjs(),
-            // terser()
-        ],
-        external: Object.keys(packageJson.dependencies)
-            .concat(Object.keys(packageJson.peerDependencies))
-            .concat(dateFnsDirs),
-    },
-    {
-        input: "./src/index.d.ts",
-        output: {
-            file: "./dist/index.d.ts",
-            format: "es"
+export default {
+    input: './src/index.ts',
+    output: [
+        {
+            file: './lib/cjs/index.js',
+            format: 'cjs',
         },
-        plugins: [dts()]
-
-    }
-];
+        {
+            file: './lib/esm/index.js',
+            format: 'es',
+        }
+    ],
+    external: [...Object.keys(pkg.peerDependencies || {})],
+    plugins: [
+        nodeResolve({
+            exclude: 'node_modules/**',
+            presets: ['@babel/preset-react']
+        }),
+        commonjs(),
+        typescript({
+            typescript: require('typescript'),
+        }),
+        postcss({
+            plugins: [require('autoprefixer')],
+        }),
+    ]
+}

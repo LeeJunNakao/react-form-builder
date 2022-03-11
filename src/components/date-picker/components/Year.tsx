@@ -8,7 +8,7 @@ type Props = {
   goNext: () => void;
 };
 
-const YearBox = (props: Props) => {
+const YearBox: React.FC<Props> = (props: Props) => {
   const [year, setYear] = useState(props.year);
   const [edit, setEdit] = useState(false);
 

@@ -1,16 +1,15 @@
 import React, { useState, createRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { SelectOption } from "@src/index.d";
 import { arrayToObject } from "@src/utils/functions";
 import { inputsOptionsDefault } from "./config";
 import { inferType } from "./fn";
 import InputWrapper from "./InputWrapper";
 import "./styles.scss";
 
-import { FormConfig, Payload, InputsOptions } from "@src/index.d";
+import { FormConfig, Payload } from "@src/index.d";
 
-function FormBuilder(props: FormConfig): JSX.Element {
-  const [showErrors, setShowErrors] = useState(true);
+const FormBuilder: React.FC<FormConfig> = (props: FormConfig) => {
+  const [showErrors] = useState(true);
   const inputsOptions = props.inputsOptions
     ? { ...inputsOptionsDefault, ...props.inputsOptions }
     : inputsOptionsDefault;
@@ -93,6 +92,6 @@ function FormBuilder(props: FormConfig): JSX.Element {
       {(props.submitButton && props.submitButton(onClickSubmit)) || Buttons}
     </div>
   );
-}
+};
 
 export default FormBuilder;

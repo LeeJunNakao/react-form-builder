@@ -7,7 +7,7 @@ type Props = {
   day: number;
   setDay: (day: number) => void;
 };
-const Day = (props: Props) => {
+const Day: React.FC<Props> = (props: Props) => {
   const weekdaysArray = range(7).map((count: number) =>
     getWeekday(2022, 2, 6 + count)
   );
@@ -22,7 +22,7 @@ const Day = (props: Props) => {
 
     const parsedDaysArray = daysArray.map((weekArr, index) => {
       if (index === 0) {
-        return weekArr.map((day, dayIndex) =>
+        return weekArr.map((_day, dayIndex) =>
           dayIndex >= firstWeekdayIndex
             ? dayIndex - firstWeekdayIndex + 1
             : null

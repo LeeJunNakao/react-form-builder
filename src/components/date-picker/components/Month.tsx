@@ -7,7 +7,7 @@ type Props = {
   goNext: () => void;
 };
 
-const Month = (props: Props) => {
+const Month: React.FC<Props> = (props: Props) => {
   const monthName = new Date(props.year, props.month).toLocaleDateString(
     "default",
     {

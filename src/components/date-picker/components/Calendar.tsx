@@ -1,6 +1,5 @@
 import React from "react";
-import { useEffect, useState, FocusEvent } from "react";
-import { daysInMonth, getWeekday, range } from "@src/utils/functions";
+import { useEffect, FocusEvent } from "react";
 import Year from "./Year";
 import Month from "./Month";
 import Day from "./Day";
@@ -16,7 +15,7 @@ type Props = {
   setInput: (value: string) => void;
 };
 
-const DateComponent = (props: Props) => {
+const DateComponent: React.FC<Props> = (props: Props) => {
   const { year, month, day, setMonth, setYear, setDay } = props;
 
   useEffect(() => {

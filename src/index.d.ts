@@ -65,4 +65,4 @@ export type SelectProps = {
 
 export declare type FormBuilder = (
   inputsOptions: Config
-) => (formConfig: FormBuilderProps) => JSX.Element;
+) => React.FC<FormBuilderProps>;

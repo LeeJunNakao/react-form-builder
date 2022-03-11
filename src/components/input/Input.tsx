@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { InputProps } from "@src/index.d";
 import "./styles.scss";
 
-const Input = (props: InputProps) => {
+const Input: React.FC<InputProps> = (props: InputProps) => {
   const [value, setValue] = useState("");
 
   useEffect(() => {

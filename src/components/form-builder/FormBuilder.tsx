@@ -11,6 +11,7 @@ const config: Config = {
     datePicker: DatePicker,
   },
 };
+
 const Component = FormBuilder(config);
 
 export default Component;
