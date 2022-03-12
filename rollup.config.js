@@ -11,6 +11,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import dts from 'rollup-plugin-dts'
 import pkg from './package.json';
 
+
 export default [{
     input: './src/index.ts',
     output: [
@@ -26,8 +27,8 @@ export default [{
     external: [...Object.keys(pkg.peerDependencies || {})],
     plugins: [
         nodeResolve({
-            exclude: 'node_modules/**',
-            presets: ['@babel/preset-react']
+            mainFields: ["module"],
+            extensions: [".js", ".jsx"],
         }),
         commonjs(),
         typescript({
@@ -37,6 +38,11 @@ export default [{
             plugins: [require('autoprefixer')],
         }),
         peerDepsExternal(),
+        babel({
+            exclude: 'node_modules/**',
+            presets: ['@babel/preset-react']
+        }),
+        commonjs(),
     ]
 },
 {
