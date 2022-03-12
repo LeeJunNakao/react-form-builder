@@ -20,6 +20,7 @@
       width: 100%;
       flex-grow: 1;
       padding-left: 10px;
+      display: flex;
     }
 
     .arrow-icon {
@@ -40,6 +41,8 @@
 
       .option {
         padding: 10px;
+        display: flex;
+        justify-content: flex-start;
 
         &:hover {
           background-color: #eaeaea;
