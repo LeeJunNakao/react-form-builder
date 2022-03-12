@@ -11,6 +11,9 @@ import commonjs from '@rollup/plugin-commonjs';
 import dts from 'rollup-plugin-dts'
 import pkg from './package.json';
 
+const dateFnsDirs = fs
+    .readdirSync(path.join("../..", "node_modules", "date-fns"))
+    .map((d) => `date-fns/${d}`);
 
 export default [{
     input: './src/index.ts',
@@ -24,7 +27,9 @@ export default [{
             format: 'es',
         }
     ],
-    external: [...Object.keys(pkg.peerDependencies || {})],
+    external: Object.keys(pkg.dependencies)
+        .concat(Object.keys(pkg.peerDependencies))
+        .concat(dateFnsDirs),
     plugins: [
         nodeResolve({
             mainFields: ["module"],
