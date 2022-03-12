@@ -2,22 +2,31 @@ import React, { useState, createRef } from "react";
 import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { MdArrowDropUp, MdArrowDropDown } from "react-icons/md";
+import { BiCheckbox, BiCheckboxChecked } from "react-icons/bi";
 import { SelectOption, SelectProps } from "@src/index.d";
 import "./styles.scss";
 
-const Select: React.FC<SelectProps> = (props: SelectProps) => {
-  const [content, setContent] = useState<SelectOption | undefined>();
-  const [contentDisplay, setContentDisplay] = useState<string>("");
+const Multiselect: React.FC<SelectProps> = (props: SelectProps) => {
+  const [content, setContent] = useState<SelectOption[]>([]);
+  const [contentDisplay, setContentDisplay] = useState<string[]>([]);
   const [isOpened, setIsOpened] = useState(false);
 
+  const selectedValues = content.map((c) => c.value);
+
   useEffect(() => {
-    if (content) setContentDisplay(content.label);
-    if (props.onChange) props.onChange(content?.value);
+    const displayLabels = content.map((c) => c.label);
+
+    setContentDisplay(displayLabels);
+    if (props.onChange) props.onChange(selectedValues);
   }, [content]);
 
   useEffect(() => {
-    const selectedOption = props.options.find((i) => i.value === props.value);
-    setContent(selectedOption);
+    if (props.value) {
+      const parsedValue = props.options.filter((o) =>
+        (props.value as string[]).includes(o.value)
+      );
+      setContent(parsedValue);
+    }
   }, [props.value]);
 
   const optionsWrapperRef = createRef();
@@ -51,20 +60,30 @@ const Select: React.FC<SelectProps> = (props: SelectProps) => {
   };
 
   const handleChange = (option: SelectOption) => {
-    setContent(option);
+    const isSelected = content.find((c) => c.value === option.value);
+    if (isSelected) {
+      const selected = content.filter((c) => c.value !== option.value);
+      setContent(selected);
+    } else {
+      setContent([...content, option]);
+    }
 
     setIsOpened(false);
   };
 
   const options = props.options || [];
   const Options = options.map((option) => {
+    const isSelected = content.some((c) => c.value === option.value);
+
+    const Icon = isSelected ? BiCheckboxChecked : BiCheckbox;
+
     return (
       <div
         className="option"
         key={uuidv4()}
         onClick={() => handleChange(option)}
       >
-        <span>{option.label}</span>
+        <Icon /> <span>{option.label}</span>
       </div>
     );
   });
@@ -83,7 +102,7 @@ const Select: React.FC<SelectProps> = (props: SelectProps) => {
       tabIndex={0}
     >
       <div className="select-input">
-        <div className="select-content">{contentDisplay}</div>
+        <div className="select-content">{contentDisplay.join(", ")}</div>
         {isOpened ? (
           <MdArrowDropUp className="arrow-icon" />
         ) : (
@@ -109,4 +128,4 @@ const Select: React.FC<SelectProps> = (props: SelectProps) => {
   );
 };
 
-export default Select;
+export default Multiselect;

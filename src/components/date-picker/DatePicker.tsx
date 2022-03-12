@@ -1,9 +1,10 @@
+import React from "react";
 import { FocusEvent, useState, KeyboardEvent, useEffect } from "react";
 import DateComponent from "./components/Calendar";
 import { InputProps } from "@src/index.d";
 import "./styles.scss";
 
-const DatePicker = (props: InputProps) => {
+const DatePicker: React.FC<InputProps> = (props: InputProps) => {
   const [value, setValue] = useState("");
   const [showCalendar, setShowCalendar] = useState(false);
   const [year, setYear] = useState(Number(new Date().getFullYear()));

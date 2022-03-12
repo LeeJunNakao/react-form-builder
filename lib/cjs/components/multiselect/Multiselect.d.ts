@@ -1,5 +1,5 @@
 import React from "react";
 import { SelectProps } from "@src/index.d";
 import "./styles.scss";
-declare const Select: React.FC<SelectProps>;
-export default Select;
+declare const Multiselect: React.FC<SelectProps>;
+export default Multiselect;

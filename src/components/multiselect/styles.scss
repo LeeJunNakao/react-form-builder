@@ -1,0 +1,78 @@
+@import "src/scss/_variables";
+@import "src/scss/_mixins";
+
+.select-component-wrapper {
+  background-color: red;
+  overflow: hidden;
+  .select-input {
+    @include input-wrapper;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    overflow: hidden;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .select-content {
+      width: 100%;
+      flex-grow: 1;
+      padding-left: 10px;
+      display: flex;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: start;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .arrow-icon {
+      font-size: 25px;
+    }
+  }
+
+  .options-wrapper {
+    display: relative;
+    width: 100%;
+
+    .select-options {
+      position: absolute;
+      background-color: white;
+      box-shadow: rgb(0 0 0 / 20%) 0px 5px 5px -3px,
+        rgb(0 0 0 / 14%) 0px 8px 10px 1px, rgb(0 0 0 / 12%) 0px 3px 14px 2px;
+      z-index: 999;
+
+      .option {
+        padding: 10px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        svg {
+          height: 25px;
+          width: 25px;
+        }
+
+        &:hover {
+          background-color: #eaeaea;
+          cursor: pointer;
+        }
+
+        &.empty-message {
+          display: flex;
+          justify-content: center;
+
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+}

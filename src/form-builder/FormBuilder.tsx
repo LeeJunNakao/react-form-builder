@@ -17,7 +17,7 @@ const FormBuilder: React.FC<FormConfig> = (props: FormConfig) => {
 
   useEffect(() => {
     if (props.formContent) setPayload(props.formContent);
-  }, []);
+  }, [props.formContent]);
 
   const InputsData = props.config.map((item) => {
     const Component = inferType(item.config.inputType, inputsOptions);

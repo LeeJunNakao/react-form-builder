@@ -1,5 +1,5 @@
-/// <reference types="react" />
+import React from "react";
 import { SelectProps } from "@src/index.d";
 import "./styles.scss";
-declare function Select(props: SelectProps): JSX.Element;
+declare const Select: React.FC<SelectProps>;
 export default Select;
