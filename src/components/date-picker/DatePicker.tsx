@@ -1,5 +1,5 @@
 import React from "react";
-import { FocusEvent, useState, KeyboardEvent, useEffect } from "react";
+import { FocusEvent, useState, KeyboardEvent, useEffect, useRef } from "react";
 import DateComponent from "./components/Calendar";
 import { InputProps } from "@src/index.d";
 import "./styles.scss";
@@ -12,6 +12,8 @@ const DatePicker: React.FC<InputProps> = (props: InputProps) => {
   const [day, setDay] = useState(Number(new Date().getDate()));
 
   const handleContent = (event: any) => setValue(event.currentTarget.value);
+
+  const componentRef = useRef<HTMLDivElement>(null);
 
   const parseString = (v: string): string => {
     const [y, m, d] = v.split(/[\/\-]/).map((i) => Number(i));
@@ -42,7 +44,11 @@ const DatePicker: React.FC<InputProps> = (props: InputProps) => {
   }, [value]);
 
   const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
-    if (!event.relatedTarget) {
+    const { relatedTarget } = event;
+
+    const isComponentRelated = componentRef.current?.contains(relatedTarget);
+
+    if (!relatedTarget || !isComponentRelated) {
       setShowCalendar(false);
     }
   };
@@ -54,7 +60,7 @@ const DatePicker: React.FC<InputProps> = (props: InputProps) => {
   };
 
   return (
-    <div className="date-component-wrapper">
+    <div className="date-component-wrapper" ref={componentRef}>
       <input
         type="text"
         className="input-component"

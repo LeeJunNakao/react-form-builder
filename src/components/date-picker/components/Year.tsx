@@ -24,12 +24,13 @@ const YearBox: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <div className="calendar-header">
+    <div className="calendar-header" data-type="calendar">
       <input
         type="button"
         value="<"
         onClick={props.goPrevious}
         className="calendar-arrow"
+        data-type="calendar"
       />
       {edit ? (
         <input
@@ -46,6 +47,7 @@ const YearBox: React.FC<Props> = (props: Props) => {
         value=">"
         onClick={props.goNext}
         className="calendar-arrow"
+        data-type="calendar"
       />
     </div>
   );

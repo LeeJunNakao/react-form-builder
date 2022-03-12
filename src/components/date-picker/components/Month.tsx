@@ -16,7 +16,7 @@ const Month: React.FC<Props> = (props: Props) => {
   );
 
   return (
-    <div className="calendar-month">
+    <div className="calendar-month" data-type="calendar">
       <input
         type="button"
         value="<"
