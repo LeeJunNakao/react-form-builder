@@ -66,6 +66,6 @@ type SelectProps = {
 
 declare function FormBuilder(
   inputsOptions?: Config
-): (formConfig: FormBuilderProps) => React.FC<Config & FormBuilderProps>;
+): (formConfig: FormBuilderProps) => React.FC<FormConfig>;
 
 export { Config, FormBuilder, FormBuilderProps, FormConfig, FormItemConfig, HookSetState, InputProps, InputsOptions, JSXElement, Payload, SelectOption, SelectProps, ValidationType, FormBuilder as default };
