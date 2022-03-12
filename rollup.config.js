@@ -47,4 +47,5 @@ export default [{
         { file: pkg.types }
     ],
     plugins: [dts()]
-}]
+}
+]

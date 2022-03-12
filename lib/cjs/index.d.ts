@@ -1,3 +1,4 @@
 import FormBuilder from "@src/form-builder";
-export { FormBuilder };
+import { ValidationType } from "./utils/validator/validation";
+export { FormBuilder, ValidationType };
 export default FormBuilder;

@@ -42,7 +42,7 @@ type FormConfig = {
   submitButton?: (onSubmit: () => void) => JSX.Element;
 };
 
-type Config = Pick<FormConfig, "inputsOptions">;
+type Config = Partial<Pick<FormConfig, "inputsOptions">>;
 type FormBuilderProps = Omit<FormConfig, "inputsOptions">;
 
 type HookSetState = (value: any) => void;
@@ -64,8 +64,8 @@ type SelectProps = {
   onChange?: HookSetState;
 };
 
-declare type FormBuilder = (
-  inputsOptions: Config
-) => React.FC<FormBuilderProps>;
+declare function FormBuilder(
+  inputsOptions?: Config
+): React.FC<FormBuilderProps>;
 
-export { Config, FormBuilder, FormBuilderProps, FormConfig, FormItemConfig, HookSetState, InputProps, InputsOptions, JSXElement, Payload, SelectOption, SelectProps, ValidationType };
+export { Config, FormBuilder, FormBuilderProps, FormConfig, FormItemConfig, HookSetState, InputProps, InputsOptions, JSXElement, Payload, SelectOption, SelectProps, ValidationType, FormBuilder as default };
