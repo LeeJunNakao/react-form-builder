@@ -42,6 +42,15 @@ export default [{
     ]
 },
 {
+    input: './src/utils/validator/validation.ts',
+    output: [
+        {
+            file: './validation/index.d.ts',
+        }
+    ],
+    plugins: [dts()]
+},
+{
     input: "./src/index.d.ts",
     output: [
         { file: pkg.types }
