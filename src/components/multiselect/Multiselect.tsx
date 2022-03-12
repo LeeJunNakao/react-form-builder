@@ -5,6 +5,7 @@ import { MdArrowDropUp, MdArrowDropDown } from "react-icons/md";
 import { BiCheckbox, BiCheckboxChecked } from "react-icons/bi";
 import { SelectOption, SelectProps } from "@src/index.d";
 import "./styles.scss";
+import { handleDisplayBlur } from "@src/utils/components-aux";
 
 const Multiselect: React.FC<SelectProps> = (props: SelectProps) => {
   const [content, setContent] = useState<SelectOption[]>([]);
@@ -31,6 +32,7 @@ const Multiselect: React.FC<SelectProps> = (props: SelectProps) => {
 
   const optionsWrapperRef = createRef();
   const optionsRef = createRef();
+  const componentRef = createRef<HTMLDivElement>();
 
   useEffect(() => {
     const wrapperWidth = (optionsWrapperRef.current as HTMLDivElement)
@@ -51,13 +53,7 @@ const Multiselect: React.FC<SelectProps> = (props: SelectProps) => {
     }
   };
 
-  const handleBlur = (
-    event: React.FocusEvent<HTMLDivElement, HTMLDivElement>
-  ) => {
-    if (event.relatedTarget !== optionsRef.current) {
-      setIsOpened(false);
-    }
-  };
+  const handleBlur = handleDisplayBlur(componentRef, setIsOpened);
 
   const handleChange = (option: SelectOption) => {
     const isSelected = content.find((c) => c.value === option.value);
@@ -67,8 +63,6 @@ const Multiselect: React.FC<SelectProps> = (props: SelectProps) => {
     } else {
       setContent([...content, option]);
     }
-
-    setIsOpened(false);
   };
 
   const options = props.options || [];
@@ -100,6 +94,7 @@ const Multiselect: React.FC<SelectProps> = (props: SelectProps) => {
       onClick={handleClick}
       onBlur={handleBlur}
       tabIndex={0}
+      ref={componentRef}
     >
       <div className="select-input">
         <div className="select-content">{contentDisplay.join(", ")}</div>

@@ -1,8 +1,9 @@
 import React from "react";
-import { FocusEvent, useState, KeyboardEvent, useEffect, useRef } from "react";
+import { useState, KeyboardEvent, useEffect, useRef } from "react";
 import DateComponent from "./components/Calendar";
 import { InputProps } from "@src/index.d";
 import "./styles.scss";
+import { handleDisplayBlur } from "@src/utils/components-aux";
 
 const DatePicker: React.FC<InputProps> = (props: InputProps) => {
   const [value, setValue] = useState("");
@@ -43,15 +44,7 @@ const DatePicker: React.FC<InputProps> = (props: InputProps) => {
     }
   }, [value]);
 
-  const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
-    const { relatedTarget } = event;
-
-    const isComponentRelated = componentRef.current?.contains(relatedTarget);
-
-    if (!relatedTarget || !isComponentRelated) {
-      setShowCalendar(false);
-    }
-  };
+  const handleBlur = handleDisplayBlur(componentRef, setShowCalendar);
 
   const handlePress = (event: KeyboardEvent) => {
     if (event.key === "Enter") {
