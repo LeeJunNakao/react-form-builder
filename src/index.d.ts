@@ -65,6 +65,6 @@ export type SelectProps = {
 
 export declare function FormBuilder(
   inputsOptions?: Config
-): React.FC<FormBuilderProps>;
+): (formConfig: FormBuilderProps) => React.FC<Config & FormBuilderProps>;
 
 export default FormBuilder;

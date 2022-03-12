@@ -11,9 +11,6 @@ import commonjs from '@rollup/plugin-commonjs';
 import dts from 'rollup-plugin-dts'
 import pkg from './package.json';
 
-
-
-
 export default [{
     input: './src/index.ts',
     output: [
