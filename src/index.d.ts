@@ -1,6 +1,5 @@
 import { ValidationType } from "./utils/validator/validation";
-
-export { ValidationType };
+import { ValidationResult } from "./utils/validator";
 
 export type JSXElement = JSX.Element;
 
@@ -66,5 +65,7 @@ export type SelectProps = {
 export declare function FormBuilder(
   inputsOptions?: Config
 ): React.FC<FormBuilderProps>;
+
+export { ValidationType, ValidationResult };
 
 export default FormBuilder;

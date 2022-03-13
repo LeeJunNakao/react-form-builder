@@ -3,6 +3,11 @@ enum ValidationType {
   PASSWORD = "password",
 }
 
+type ValidationResult = {
+  error: boolean;
+  message: string;
+};
+
 type JSXElement = JSX.Element;
 
 type FormItemConfig = {
@@ -68,4 +73,4 @@ declare function FormBuilder(
   inputsOptions?: Config
 ): React.FC<FormBuilderProps>;
 
-export { Config, FormBuilder, FormBuilderProps, FormConfig, FormItemConfig, HookSetState, InputProps, InputsOptions, JSXElement, Payload, SelectOption, SelectProps, ValidationType, FormBuilder as default };
+export { Config, FormBuilder, FormBuilderProps, FormConfig, FormItemConfig, HookSetState, InputProps, InputsOptions, JSXElement, Payload, SelectOption, SelectProps, ValidationResult, ValidationType, FormBuilder as default };
