@@ -24,7 +24,7 @@ type FormItemConfig = {
     validation?: {
       required?: boolean;
       type?: ValidationType;
-      callback?: (arg?: any) => any;
+      callback?: (arg: any, values: Payload) => ValidationResult;
     };
   };
 };

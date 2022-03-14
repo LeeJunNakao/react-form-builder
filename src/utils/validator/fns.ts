@@ -1,6 +1,8 @@
 import { Item, ValidationPipeArg } from "./index";
 import { ValidationType } from "@src/utils/validator/validation";
 import errorMessages from "./messages";
+import { arrayToObject } from "../functions";
+import { Payload } from "@src/index.d";
 
 const getDefaultResult = () => ({ error: false, message: "" });
 
@@ -28,9 +30,14 @@ export const callback = ({
 
   if (item.config.validation?.callback) {
     const state = item.state;
+    const allInputsStates = item.inputRefs.map((i) => ({
+      [i.current.getName()]: i.current.getValue(),
+    }));
+    const values = arrayToObject(allInputsStates) as Payload;
+
     return {
       item,
-      result: item.config.validation.callback(state),
+      result: item.config.validation.callback(state, values as Payload),
     };
   }
 

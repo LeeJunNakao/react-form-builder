@@ -19,6 +19,8 @@ const FormBuilder: React.FC<FormConfig> = (props: FormConfig) => {
     if (props.formContent) setPayload(props.formContent);
   }, [props.formContent]);
 
+  const inputsRefs: React.RefObject<any>[] = [];
+
   const InputsData = props.config.map((item) => {
     const Component = inferType(item.config.inputType, inputsOptions);
     const colStyle = item.config.style?.cols
@@ -26,6 +28,7 @@ const FormBuilder: React.FC<FormConfig> = (props: FormConfig) => {
       : "col-12";
 
     const ref = createRef<any>();
+    inputsRefs.push(ref);
 
     const component = (
       <div className={`form_builder__item ${colStyle}`} key={uuidv4()}>
@@ -39,6 +42,7 @@ const FormBuilder: React.FC<FormConfig> = (props: FormConfig) => {
           showErrors={showErrors}
           formData={payload}
           ref={ref}
+          inputsRefs={inputsRefs}
           {...item.config.props}
         />
       </div>

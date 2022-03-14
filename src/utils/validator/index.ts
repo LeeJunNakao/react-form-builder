@@ -1,9 +1,11 @@
 import { pipe } from "@src/utils/functions";
 import { FormItemConfig } from "@src/index.d";
 import { required, email, password, callback } from "./fns";
+import { RefObject } from "react";
 
 export type Item = {
   state: any;
+  inputRefs: RefObject<any>[];
 } & FormItemConfig;
 
 export type ValidationResult = {
