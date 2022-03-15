@@ -6,6 +6,7 @@ declare type Props = {
     formData: Payload;
     showErrors: boolean;
     inputsRefs: RefObject<any>[];
+    updateOnChange: () => void;
 };
 declare const InputWrapper: React.ForwardRefExoticComponent<Props & React.RefAttributes<unknown>>;
 export default InputWrapper;

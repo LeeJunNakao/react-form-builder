@@ -21,6 +21,17 @@ const FormBuilder: React.FC<FormConfig> = (props: FormConfig) => {
 
   const inputsRefs: React.RefObject<any>[] = [];
 
+  const updateOnChange = () => {
+    if (props.onChange) {
+      const payloads = inputsRefs.map((i) => [
+        i.current.getName(),
+        i.current.getValue(),
+      ]);
+
+      props.onChange(Object.fromEntries(payloads) as Payload);
+    }
+  };
+
   const InputsData = props.config.map((item) => {
     const Component = inferType(item.config.inputType, inputsOptions);
     const colStyle = item.config.style?.cols
@@ -43,6 +54,7 @@ const FormBuilder: React.FC<FormConfig> = (props: FormConfig) => {
           formData={payload}
           ref={ref}
           inputsRefs={inputsRefs}
+          updateOnChange={updateOnChange}
           {...item.config.props}
         />
       </div>

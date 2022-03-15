@@ -14,6 +14,7 @@ type Props = {
   formData: Payload;
   showErrors: boolean;
   inputsRefs: RefObject<any>[];
+  updateOnChange: () => void;
 };
 
 const InputWrapper = forwardRef((props: Props, ref) => {
@@ -37,6 +38,7 @@ const InputWrapper = forwardRef((props: Props, ref) => {
       inputRefs: props.inputsRefs,
     });
     setError(message);
+    props.updateOnChange();
   }, [value]);
 
   return (

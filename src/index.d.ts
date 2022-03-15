@@ -37,6 +37,7 @@ export type FormConfig = {
   formContent?: Payload;
   onValid?: (payload: Payload) => void;
   onInvalid?: (payload: Payload) => void;
+  onChange?: (payload: Payload) => void;
   submitButton?: (onSubmit: () => void) => JSX.Element;
 };
 
