@@ -129,7 +129,7 @@ span {
   .error-message {
     color: #b33030;
     font-size: 12px;
-    height: 25px;
+    min-height: 25px;
     display: flex;
     align-items: center;
   }
