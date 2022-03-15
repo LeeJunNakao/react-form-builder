@@ -11,14 +11,16 @@ const Select: React.FC<SelectProps> = (props: SelectProps) => {
   const [isOpened, setIsOpened] = useState(false);
 
   useEffect(() => {
-    if (content) setContentDisplay(content.label);
-    if (props.onChange) props.onChange(content?.value);
+    if (content) {
+      setContentDisplay(content.label);
+      if (props.onChange) props.onChange(content.value);
+    }
   }, [content]);
 
   useEffect(() => {
     const selectedOption = props.options.find((i) => i.value === props.value);
     setContent(selectedOption);
-  }, [props.value]);
+  }, []);
 
   const optionsWrapperRef = createRef();
   const optionsRef = createRef();
