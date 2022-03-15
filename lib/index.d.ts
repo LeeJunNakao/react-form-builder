@@ -20,6 +20,7 @@ type FormItemConfig = {
     };
     props?: {
       options?: SelectOption[];
+      type?: string;
     };
     validation?: {
       required?: boolean;
@@ -57,6 +58,7 @@ type InputProps = {
   placeholder?: string;
   value?: string;
   onChange?: HookSetState;
+  type?: string;
 };
 
 type SelectOption = {

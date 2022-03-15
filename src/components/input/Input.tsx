@@ -19,7 +19,7 @@ const Input: React.FC<InputProps> = (props: InputProps) => {
   return (
     <div className="input-component-wrapper">
       <input
-        type="text"
+        type={props.type}
         className="input-component"
         value={value}
         placeholder={props?.placeholder}
