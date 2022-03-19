@@ -11,6 +11,7 @@ import {
   FormConfig,
   FormItemConfig,
   Payload,
+  ValidationCallback,
 } from "@src/form-builder/types";
 import { ValidationType } from "./utils/validator/types";
 
@@ -31,6 +32,8 @@ export {
   FormItemConfig,
   Config,
   Payload,
+  FormBuilderProps,
+  ValidationCallback,
 };
 
 export default FormBuilder;

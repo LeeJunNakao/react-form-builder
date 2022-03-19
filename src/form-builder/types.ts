@@ -2,6 +2,11 @@ import * as Utils from "@src/utils/types";
 import { SelectOption } from "@src/components/types";
 import { ValidationType } from "@src/utils/validator/types";
 
+export type ValidationCallback = (
+  arg: any,
+  values: Payload
+) => Utils.ValidationResult;
+
 export type FormItemConfig = {
   name: string;
   label?: string;
@@ -17,7 +22,7 @@ export type FormItemConfig = {
     validation?: {
       required?: boolean;
       type?: ValidationType;
-      callback?: (arg: any, values: Payload) => Utils.ValidationResult;
+      callback?: ValidationCallback;
     };
   };
 };
