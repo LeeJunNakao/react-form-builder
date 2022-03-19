@@ -12,7 +12,7 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "prepack": "yarn build; yarn ttsc --emitDeclarationOnly; mv lib/index.d.ts/ lib/types",
+    "prepack": "rm -R lib/; yarn build; yarn ttsc --emitDeclarationOnly; mv lib/index.d.ts/ lib/types",
     "build": "rollup -c",
     "watch": "rollup -cw"
   },

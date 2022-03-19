@@ -10,6 +10,7 @@ import {
   Config,
   FormConfig,
   FormItemConfig,
+  Payload,
 } from "@src/form-builder/types";
 import { ValidationType } from "./utils/validator/types";
 
@@ -29,6 +30,7 @@ export {
   FormConfig,
   FormItemConfig,
   Config,
+  Payload,
 };
 
 export default FormBuilder;
