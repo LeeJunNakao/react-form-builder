@@ -1,5 +1,5 @@
 import { Dispatch, RefObject, SetStateAction, FocusEvent } from "react";
-import { HookSetState } from "@src/index.d";
+import { HookSetState } from "@src/utils/types";
 
 export const handleChange =
   (
@@ -19,7 +19,6 @@ export const handleDisplayBlur =
   ) =>
   (event: FocusEvent<HTMLInputElement | HTMLDivElement>) => {
     const { relatedTarget } = event;
-
     const isComponentRelated = componentRef.current?.contains(relatedTarget);
 
     if (!relatedTarget || !isComponentRelated) {

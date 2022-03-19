@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, KeyboardEvent, useEffect, useRef } from "react";
 import DateComponent from "./components/Calendar";
-import { InputProps } from "@src/index.d";
+import { InputProps } from "@src/components/types";
 import "./styles.scss";
 import { handleDisplayBlur } from "@src/utils/components-aux";
 

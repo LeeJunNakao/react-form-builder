@@ -1,8 +1,8 @@
-import { Item, ValidationPipeArg } from "./index";
-import { ValidationType } from "@src/utils/validator/validation";
+import { ValidationType } from "@src/utils/validator/types";
+import { Item, ValidationPipeArg } from "@src/utils/types";
 import errorMessages from "./messages";
 import { arrayToObject } from "../functions";
-import { Payload } from "@src/index.d";
+import { Payload } from "@src/form-builder/types";
 
 const getDefaultResult = () => ({ error: false, message: "" });
 

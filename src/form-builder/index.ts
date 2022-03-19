@@ -1,5 +1,5 @@
 import FormBuilder from "./FormBuilder";
-import { Config, FormBuilderProps } from "@src/index.d";
+import { Config, FormBuilderProps } from "@src/form-builder/types";
 
 const configForm =
   (inputsOptions: Config) => (formConfig: FormBuilderProps) => {

@@ -1,34 +1,47 @@
 import React, { useState, createRef } from "react";
 import { useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { MdArrowDropUp, MdArrowDropDown } from "react-icons/md";
-import { BiCheckbox, BiCheckboxChecked } from "react-icons/bi";
-import { SelectOption, SelectProps } from "@src/index.d";
-import "./styles.scss";
+import { SelectOption, SelectProps } from "@src/components/types";
 import { handleDisplayBlur } from "@src/utils/components-aux";
+import Options from "./Options";
+import SelectInput from "./SelectInput";
+import OptionsWrapper from "./OptionsWrapper";
+import "./styles.scss";
 
 const Multiselect: React.FC<SelectProps> = (props: SelectProps) => {
   const [content, setContent] = useState<SelectOption[]>([]);
   const [contentDisplay, setContentDisplay] = useState<string[]>([]);
   const [isOpened, setIsOpened] = useState(false);
 
-  const selectedValues = content.map((c) => c.value);
+  const handleOpenClose = (status: boolean) => {
+    const selectedValues = content.map((c) => c.value);
+    if (!status && props.onChange) {
+      props.onChange([...selectedValues]);
+    }
+
+    setIsOpened(status);
+  };
 
   useEffect(() => {
     const displayLabels = content.map((c) => c.label);
 
     setContentDisplay(displayLabels);
-    if (props.onChange) props.onChange(selectedValues);
   }, [content]);
 
   useEffect(() => {
+    if (props.shouldClear) {
+      setContent([]);
+      if (props.onChange) props.onChange([]);
+    }
+  }, [props.shouldClear]);
+
+  useEffect(() => {
     if (props.value) {
-      const parsedValue = props.options.filter((o) =>
-        (props.value as string[]).includes(o.value)
-      );
+      const parsedValue = props.options
+        .filter((o) => (props.value as string[]).includes(o.value))
+        .map((i) => ({ label: i.label, value: i.value }));
       setContent(parsedValue);
     }
-  }, [props.value]);
+  }, []);
 
   const optionsWrapperRef = createRef();
   const optionsRef = createRef();
@@ -49,11 +62,11 @@ const Multiselect: React.FC<SelectProps> = (props: SelectProps) => {
       const isRelated = (optionsRef.current as HTMLDivElement)?.contains(
         event.target as Node
       );
-      if (!isRelated) setIsOpened(!isOpened);
+      if (!isRelated) handleOpenClose(!isOpened);
     }
   };
 
-  const handleBlur = handleDisplayBlur(componentRef, setIsOpened);
+  const handleBlur = handleDisplayBlur(componentRef, handleOpenClose);
 
   const handleChange = (option: SelectOption) => {
     const isSelected = content.find((c) => c.value === option.value);
@@ -66,27 +79,6 @@ const Multiselect: React.FC<SelectProps> = (props: SelectProps) => {
   };
 
   const options = props.options || [];
-  const Options = options.map((option) => {
-    const isSelected = content.some((c) => c.value === option.value);
-
-    const Icon = isSelected ? BiCheckboxChecked : BiCheckbox;
-
-    return (
-      <div
-        className="option"
-        key={uuidv4()}
-        onClick={() => handleChange(option)}
-      >
-        <Icon /> <span>{option.label}</span>
-      </div>
-    );
-  });
-
-  const EmptyMessage = (
-    <div className="option empty-message">
-      <span>No options </span>
-    </div>
-  );
 
   return (
     <div
@@ -96,29 +88,15 @@ const Multiselect: React.FC<SelectProps> = (props: SelectProps) => {
       tabIndex={0}
       ref={componentRef}
     >
-      <div className="select-input">
-        <div className="select-content">{contentDisplay.join(", ")}</div>
-        {isOpened ? (
-          <MdArrowDropUp className="arrow-icon" />
-        ) : (
-          <MdArrowDropDown className="arrow-icon" />
-        )}
-      </div>
-
-      <div
-        className="options-wrapper"
-        ref={optionsWrapperRef as React.RefObject<HTMLDivElement>}
-      >
-        {isOpened && (
-          <div
-            className="select-options"
-            ref={optionsRef as React.RefObject<HTMLDivElement>}
-            tabIndex={0}
-          >
-            {options.length ? Options : EmptyMessage}
-          </div>
-        )}
-      </div>
+      <SelectInput isOpened={isOpened} contentDisplay={contentDisplay} />
+      <OptionsWrapper
+        content={content}
+        isOpened={isOpened}
+        optionsWrapperRef={optionsWrapperRef}
+        optionsRef={optionsRef}
+        options={options}
+        handleChange={handleChange}
+      />
     </div>
   );
 };

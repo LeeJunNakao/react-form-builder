@@ -5,8 +5,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
-import typescript from 'rollup-plugin-typescript2';
-import tsconfig from './tsconfig.json';
+import typescript from 'rollup-plugin-typescript2'
 import commonjs from '@rollup/plugin-commonjs';
 import dts from 'rollup-plugin-dts'
 import pkg from './package.json';
@@ -36,9 +35,7 @@ export default [{
             extensions: [".js", ".jsx"],
         }),
         commonjs(),
-        typescript({
-            typescript: require('typescript'),
-        }),
+        typescript(),
         postcss({
             plugins: [require('autoprefixer')],
         }),
@@ -50,20 +47,4 @@ export default [{
         commonjs(),
     ]
 },
-{
-    input: './src/utils/validator/validation.ts',
-    output: [
-        {
-            file: './validation/index.d.ts',
-        }
-    ],
-    plugins: [dts()]
-},
-{
-    input: "./src/index.d.ts",
-    output: [
-        { file: pkg.types }
-    ],
-    plugins: [dts()]
-}
 ]
