@@ -1,6 +1,11 @@
 import React, { createRef, RefObject } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { InputsOptions, FormConfig, Payload } from "@src/form-builder/types";
+import {
+  InputsOptions,
+  FormConfig,
+  Payload,
+  ErrorData,
+} from "@src/form-builder/types";
 import { inputsOptionsDefault } from "./config";
 import InputWrapper from "../InputWrapper";
 
@@ -10,6 +15,7 @@ export const inferType = (typeValue: string, collection: InputsOptions) =>
 type ConfigInputsArgs = FormConfig & {
   payload: RefObject<Payload>;
   shouldClear: Boolean;
+  errors: ErrorData;
   setFormContent: (name: string, value: any) => void;
 };
 
@@ -19,6 +25,7 @@ export const configInputs = ({
   payload,
   formContent,
   shouldClear,
+  errors,
   setFormContent,
   onChange,
 }: ConfigInputsArgs) => {
@@ -43,12 +50,13 @@ export const configInputs = ({
         <InputWrapper
           component={Component}
           itemData={item}
-          formData={formContent}
+          formData={{ ...formContent, ...payload.current }}
           setFormData={setFormContent}
           ref={ref}
           payload={payload}
           onChange={onChange}
           shouldClear={shouldClear}
+          errors={errors}
           {...item.config.props}
         />
       </div>

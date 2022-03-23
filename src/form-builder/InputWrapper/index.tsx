@@ -1,5 +1,5 @@
-import React, { useState, forwardRef, RefObject, useEffect } from "react";
-import { FormItemConfig, Payload } from "@src/form-builder/types";
+import React, { forwardRef, RefObject, useEffect } from "react";
+import { ErrorData, FormItemConfig, Payload } from "@src/form-builder/types";
 
 type Props = {
   component: React.FC<any>;
@@ -7,14 +7,13 @@ type Props = {
   formData: Payload | undefined;
   payload: RefObject<Payload>;
   shouldClear: Boolean;
-  setFormData: (name: string, value: any) => void;
+  errors: ErrorData;
   showErrors?: boolean;
+  setFormData: (name: string, value: any) => void;
   onChange?: (value: Payload) => void;
 };
 
 const InputWrapper = forwardRef((props: Props, ref) => {
-  const [error, setError] = useState("");
-
   const Component = props.component;
 
   const onChange = (v: any) => {
@@ -34,7 +33,7 @@ const InputWrapper = forwardRef((props: Props, ref) => {
         shouldClear={props.shouldClear}
       />
       <div className="error-message">
-        <span>{props.showErrors && error}</span>
+        <span>{props.errors[props.itemData.name] || ""}</span>
       </div>
     </div>
   );

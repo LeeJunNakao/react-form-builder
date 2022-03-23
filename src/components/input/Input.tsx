@@ -4,7 +4,7 @@ import { InputProps } from "@src/components/types";
 import "./styles.scss";
 
 const Input: React.FC<InputProps> = (props: InputProps) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(props.value || "");
 
   useEffect(() => {
     if (props.value) setValue(props.value);

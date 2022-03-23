@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Buttons from "./Buttons";
 import { configInputs } from "./fn";
-import { FormConfig, Payload } from "@src/form-builder/types";
+import { ErrorData, FormConfig, Payload } from "@src/form-builder/types";
+import { validator } from "@src/utils/validator";
 import "./styles.scss";
 
 const FormBuilder: React.FC<FormConfig> = (props: FormConfig) => {
@@ -9,6 +10,7 @@ const FormBuilder: React.FC<FormConfig> = (props: FormConfig) => {
   const setPayload = (name: string, value: any) =>
     (payload.current = { ...payload.current, [name]: value });
   const [shouldClear, setShouldClear] = useState(false);
+  const [errors, setErrors] = useState<ErrorData>({});
 
   useEffect(() => {
     if (shouldClear) setShouldClear(false);
@@ -22,20 +24,24 @@ const FormBuilder: React.FC<FormConfig> = (props: FormConfig) => {
     ...props,
     payload,
     shouldClear,
+    errors,
     setFormContent: setPayload,
   });
+
   const Inputs = InputsData.map((i) => i.component);
 
   const onClickSubmit = () => {
-    const errors = InputsData.map((i) => i.ref.current?.getErrorMessage());
-    const isFormValid = Object.values(errors).every((i) => !i);
+    const errorsResult = validator({ payload, config: props.config });
+    const isFormValid = Object.values(errorsResult).every((i) => !i);
 
     if (isFormValid) {
       if (props.onValid) {
         props.onValid(payload.current);
       }
+      setErrors({});
     } else {
       if (props.onInvalid) props.onInvalid(payload.current);
+      setErrors({ ...errorsResult });
     }
   };
 

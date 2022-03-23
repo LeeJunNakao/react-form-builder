@@ -2,6 +2,7 @@
 import * as Utils from "../utils/types";
 import { SelectOption } from "../components/types";
 import { ValidationType } from "../utils/validator/types";
+export declare type ValidationCallback = (arg: any, values: Payload) => Utils.ValidationResult;
 export declare type FormItemConfig = {
     name: string;
     label?: string;
@@ -17,7 +18,7 @@ export declare type FormItemConfig = {
         validation?: {
             required?: boolean;
             type?: ValidationType;
-            callback?: (arg: any, values: Payload) => Utils.ValidationResult;
+            callback?: ValidationCallback;
         };
     };
 };
@@ -36,6 +37,10 @@ export declare type FormConfig = {
     onInvalid?: (payload: Payload) => void;
     onChange?: (payload: Payload) => void;
     submitButton?: (onSubmit: () => void) => JSX.Element;
+};
+export declare type ErrorText = string;
+export declare type ErrorData = {
+    [name: string]: ErrorText;
 };
 export declare type Config = Partial<Pick<FormConfig, "inputsOptions">>;
 export declare type FormBuilderProps = Omit<FormConfig, "inputsOptions">;

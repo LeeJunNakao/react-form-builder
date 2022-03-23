@@ -46,5 +46,11 @@ export type FormConfig = {
   submitButton?: (onSubmit: () => void) => JSX.Element;
 };
 
+export type ErrorText = string;
+
+export type ErrorData = {
+  [name: string]: ErrorText;
+};
+
 export type Config = Partial<Pick<FormConfig, "inputsOptions">>;
 export type FormBuilderProps = Omit<FormConfig, "inputsOptions">;

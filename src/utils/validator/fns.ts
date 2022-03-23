@@ -1,15 +1,16 @@
 import { ValidationType } from "@src/utils/validator/types";
 import { Item, ValidationPipeArg } from "@src/utils/types";
 import errorMessages from "./messages";
-import { arrayToObject } from "../functions";
-import { Payload } from "@src/form-builder/types";
 
 const getDefaultResult = () => ({ error: false, message: "" });
 
 export const required = (item: Item): ValidationPipeArg => {
-  if (item.config.validation?.required) {
-    const state = item.state;
-    const hasError = state === undefined || state === null || state === "";
+  if (item.config?.required) {
+    const state = item.payload[item.name];
+    const hasError = Array.isArray(state)
+      ? state.length === 0
+      : state === undefined || state === null || state === "";
+
     return {
       item,
       result: {
@@ -28,16 +29,12 @@ export const callback = ({
 }: ValidationPipeArg): ValidationPipeArg => {
   if (result.error) return { item, result };
 
-  if (item.config.validation?.callback) {
-    const state = item.state;
-    const allInputsStates = item.inputRefs.map((i) => ({
-      [i.current.getName()]: i.current.getValue(),
-    }));
-    const values = arrayToObject(allInputsStates) as Payload;
+  if (item.config?.callback) {
+    const state = item.payload[item.name];
 
     return {
       item,
-      result: item.config.validation.callback(state, values as Payload),
+      result: item.config.callback(state, item.payload),
     };
   }
 
@@ -56,10 +53,10 @@ export const email = ({
   const regex =
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-  const state = item.state;
+  const state = item.payload[item.name];
   const isValid = regex.test(state);
 
-  if (item.config.validation?.type === ValidationType.EMAIL) {
+  if (item.config?.type === ValidationType.EMAIL) {
     return {
       item,
       result: {
@@ -83,10 +80,10 @@ export const password = ({
 
   const regex = /((?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])){8,12}/;
 
-  const state = item.state;
+  const state = item.payload[item.name];
   const isValid = regex.test(state);
 
-  if (item.config.validation?.type === ValidationType.PASSWORD) {
+  if (item.config?.type === ValidationType.PASSWORD) {
     return {
       item,
       result: {

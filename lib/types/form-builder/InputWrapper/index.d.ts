@@ -1,13 +1,14 @@
 import React, { RefObject } from "react";
-import { FormItemConfig, Payload } from "../types";
+import { ErrorData, FormItemConfig, Payload } from "../types";
 declare type Props = {
     component: React.FC<any>;
     itemData: FormItemConfig;
     formData: Payload | undefined;
     payload: RefObject<Payload>;
     shouldClear: Boolean;
-    setFormData: (name: string, value: any) => void;
+    errors: ErrorData;
     showErrors?: boolean;
+    setFormData: (name: string, value: any) => void;
     onChange?: (value: Payload) => void;
 };
 declare const InputWrapper: React.ForwardRefExoticComponent<Props & React.RefAttributes<unknown>>;

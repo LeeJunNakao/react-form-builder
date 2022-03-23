@@ -1,12 +1,13 @@
 import { RefObject } from "react";
-import { FormItemConfig } from "@src/form-builder/types";
+import { Payload, FormItemConfig } from "@src/types";
 
 export type HookSetState = (value: any) => void;
 
 export type Item = {
-  state: any;
-  inputRefs: RefObject<any>[];
-} & FormItemConfig;
+  payload: Payload;
+  name: string;
+  config: FormItemConfig["config"]["validation"];
+};
 
 export type ValidationResult = {
   error: boolean;
